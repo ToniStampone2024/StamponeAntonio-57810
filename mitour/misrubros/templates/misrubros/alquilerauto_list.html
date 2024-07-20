@@ -1,0 +1,74 @@
+{% extends "misrubros/index.html" %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Alquiler Vehículos</h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<table>
+    <tr>
+        <td width="200"><h2>Alquiler Vehículos</h2></td>
+        <td>
+            <a
+            href="{% url 'alquilerautoCreate' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+            </a>
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+                <th>Empresa</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ciudad</th>
+                <th>Pais</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha Desde</th>
+                <th>Fecha Hasta</th>
+                <th>Fecha Compra</th>
+                <th>Acciones</th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for e in alquilerauto_list  %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.marca }}</td>
+            <td>{{ e.modelo }}</td>
+            <td>{{ e.ciudad }}</td>
+            <td>{{ e.pais }}</td>
+            <td>{{ e.origen }}</td>
+            <td>{{ e.destino }}</td>
+            <td>{{ e.fecha_desde }}</td>
+            <td>{{ e.fecha_hasta }}</td>
+            <td>{{ e.fecha_compra }}</td> 
+            <td>
+                <a 
+                  href="{% url 'alquilerautoUpdate' e.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'alquilerautoDelete' e.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>                
+            </td>              
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

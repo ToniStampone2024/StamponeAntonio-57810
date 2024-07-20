@@ -1,0 +1,65 @@
+{% extends "misrubros/index.html" %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Hoteles</h1>                                
+{% endblock titulo %}
+
+
+{% block contenido %}   
+
+<table>
+    <tr>
+        <td width="200"><h2>Hoteles</h2></td>
+        <td>
+            <a
+            href="{% url 'hotelForm' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+            </a>
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+            <th>Fecha Desde</th>
+            <th>Fecha Hasta</th>
+            <th>Fecha Compra</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for c in hoteles  %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.nombre }}</td>
+            <td>{{ c.ciudad }}</td>
+            <td>{{ c.pais }}</td>
+            <td>{{ c.fecha_desde }}</td>
+            <td>{{ c.fecha_hasta }}</td>
+            <td>{{ c.fecha_compra }}</td>
+            <td>
+                <a
+                  href="{% url 'hotelUpdate' c.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'hotelDelete' c.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>                
+            </td>    
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
